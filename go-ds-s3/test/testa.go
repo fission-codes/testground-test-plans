@@ -10,12 +10,15 @@ import "github.com/testground/sdk-go/runtime"
 //   --runner="local:exec" \
 //   --dep="github.com/fission-suite/go-ipfs=master" \
 //   -instances=8 \
-//   --test-param cpuprof_path=/tmp/cpu.prof \
-//   --test-param memprof_path=/tmp/mem.prof
+//   --test-param iterations=100
 //
 
 // Testa
 func Testa(runenv *runtime.RunEnv) error {
-	runenv.RecordMessage("started test instance")
+	// 📝  Consume test parameters from the runtime environment.
+	var (
+		iterations = runenv.IntParam("iterations")
+	)
+	runenv.RecordMessage("started test instance, iterations=%d", iterations)
 	return nil
 }
