@@ -14,6 +14,8 @@ func runner(runenv *runtime.RunEnv) error {
 	switch c := runenv.TestCase; c {
 	case "testa":
 		return test.Testa(runenv)
+	case "testb":
+		return test.Testb(runenv)
 	default:
 		panic("unrecognized test case")
 	}
