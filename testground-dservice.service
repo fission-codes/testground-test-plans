@@ -1,0 +1,10 @@
+[Unit]
+
+Description=Testground daemon service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash  /usr/bin/tgdaemon-service.sh
+
+[Install]
+WantedBy=multi-user.target
