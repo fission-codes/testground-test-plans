@@ -12,10 +12,14 @@ func main() {
 
 func runner(runenv *runtime.RunEnv) error {
 	switch c := runenv.TestCase; c {
+	case "add_dir":
+		return test.AddDir(runenv)
 	case "testa":
 		return test.Testa(runenv)
 	case "testb":
 		return test.Testb(runenv)
+	case "testc":
+		return test.Testc(runenv)
 	default:
 		panic("unrecognized test case")
 	}

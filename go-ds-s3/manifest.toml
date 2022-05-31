@@ -13,6 +13,13 @@ name = "go-ds-s3"
   enable_go_build_cache = true
 
 [[testcases]]
+name = "add_dir"
+instances = { min = 2, max = 10000, default = 5 }
+
+  [testcases.params]
+  iterations        = { type = "int", desc = "number of iterations to run", unit = "count", default = 5 }
+
+[[testcases]]
 name = "testa"
 instances = { min = 2, max = 10000, default = 5 }
 
