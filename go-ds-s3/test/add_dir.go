@@ -1,8 +1,11 @@
 package test
 
 import (
+	crand "crypto/rand"
 	"flag"
+	"math/rand"
 	"os"
+	"time"
 
 	randomfiles "github.com/jbenet/go-random-files"
 	"github.com/testground/sdk-go/runtime"
@@ -17,13 +20,19 @@ func AddDir(runenv *runtime.RunEnv) error {
 	)
 
 	opts := randomfiles.Options{
-		FileSize:    1024,
-		FanoutDepth: 5,
-		FanoutFiles: 10,
-		FanoutDirs:  5,
-		RandomSize:  true,
+		FileSize:     4096,
+		FanoutDepth:  2,
+		FanoutDirs:   5,
+		FanoutFiles:  10,
+		RandomSeed:   0,
+		RandomFanout: false,
+		RandomSize:   true,
+		Alphabet:     randomfiles.RunesEasy,
+		Out:          os.Stdout,
+		Source:       crand.Reader,
 	}
 
+	rand.Seed(time.Now().UnixNano())
 	runenv.RecordMessage("started test instance, iterations=%d", iterations)
 
 	flag.Parse()
