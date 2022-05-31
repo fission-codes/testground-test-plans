@@ -11,9 +11,6 @@ import (
 	"github.com/testground/sdk-go/runtime"
 )
 
-// var flagExp = flag.Bool("experimental", false, "enable experimental features")
-
-// Testa
 func AddDir(runenv *runtime.RunEnv) error {
 	var (
 		iterations = runenv.IntParam("iterations")
@@ -37,13 +34,17 @@ func AddDir(runenv *runtime.RunEnv) error {
 
 	flag.Parse()
 
-	root := "/tmp/testground"
-
 	if err := os.MkdirAll(root, 0755); err != nil {
 		return err
 	}
+	root := "/tmp/testground"
 
-	err := randomfiles.WriteRandomFiles(root, 1, &opts)
+	dirPath, err := runenv.CreateRandomDirectory(root, 1)
+	if err != nil {
+		return err
+	}
+
+	err = randomfiles.WriteRandomFiles(dirPath, 1, &opts)
 	if err != nil {
 		return err
 	}
