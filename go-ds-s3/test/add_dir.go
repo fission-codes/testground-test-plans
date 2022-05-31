@@ -39,7 +39,6 @@ func AddDir(runenv *runtime.RunEnv) error {
 		return err
 	}
 
-	runenv.RecordMessage("random string = ", s)
 	runenv.RecordMessage("all done")
 	return nil
 }
