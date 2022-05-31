@@ -34,10 +34,10 @@ func AddDir(runenv *runtime.RunEnv) error {
 
 	flag.Parse()
 
+	root := "/tmp/testground"
 	if err := os.MkdirAll(root, 0755); err != nil {
 		return err
 	}
-	root := "/tmp/testground"
 
 	dirPath, err := runenv.CreateRandomDirectory(root, 1)
 	if err != nil {
