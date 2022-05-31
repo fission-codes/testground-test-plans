@@ -2,6 +2,7 @@ package test
 
 import (
 	"flag"
+	"math/rand"
 
 	"github.com/testground/sdk-go/runtime"
 )
@@ -17,6 +18,21 @@ func AddDir(runenv *runtime.RunEnv) error {
 
 	flag.Parse()
 
+	s := randomString(32)
+
+	runenv.RecordMessage("random string = ", s)
 	runenv.RecordMessage("all done")
 	return nil
+}
+
+func randomInt(min, max int) int {
+	return min + rand.Intn(max-min)
+}
+
+func randomString(len int) string {
+	bytes := make([]byte, len)
+	for i := 0; i < len; i++ {
+		bytes[i] = byte(randomInt(65, 90))
+	}
+	return string(bytes)
 }
